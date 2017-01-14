@@ -1,7 +1,8 @@
 import shapefile
 from config import *
 import logging
-logging.basicConfig(level=1)
+from config import DEBUG
+logging.basicConfig(level=DEBUG)
 _logger = logging.getLogger(__name__)
 
 _sf = shapefile.Reader(FILENAME)
