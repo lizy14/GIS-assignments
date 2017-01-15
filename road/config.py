@@ -8,7 +8,9 @@ FILENAME = path.abspath(path.join(
     path.dirname(__file__),
     path.pardir,
     'data',
-    'soil.shp'
+    'road.shp'
 ))
 # alternatively,
 # FILENAME = 'C:\\_O\\GIS-assignments\\data\\road.shp'
+
+__all__ = ['DEBUG', 'QGIS_PATH', 'FILENAME']
