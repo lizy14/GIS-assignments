@@ -77,19 +77,3 @@ def shortest_path(graph, start, end):
     path.append(start)
     path.reverse()
     return path
-
-
-def test_graph():
-    g = Graph()
-    g.add_node(4)
-    g.add_node(5)
-    g.add_node(8)
-    g.add_edge(4, 8, 4)
-    g.add_edge(5, 8, 2)
-    g.add_node(6)
-    assert(shortest_path(g, 5, 4) == [5, 8, 4])
-    g.add_edge(5, 6, 2)
-    g.add_edge(4, 6, 1)
-    assert(shortest_path(g, 5, 4) == [5, 6, 4])
-    g.add_edge(4, 5, 1.4)
-    assert(shortest_path(g, 5, 4) == [5, 4])
