@@ -1,4 +1,10 @@
-# coding=gbk
-import os
-_BASE_PATH = 'C:\\Users\\Justin\\Desktop\\gis'
-FILENAME = os.path.join(_BASE_PATH, 'soil_data', 'Õ¡»¿ ˝æ›.shp')
+from os import path
+FILENAME = path.abspath(path.join(
+    path.dirname(__file__),
+    path.pardir,
+    'data',
+    'soil.shp'
+))
+DEBUG = 1
+# alternatively,
+# FILENAME = 'C:\\_O\\GIS-assignments\\data\\road.shp'
