@@ -1,9 +1,26 @@
 from collections import defaultdict
-from progress import printProgress
+from geometry import *
 import logging
 from config import DEBUG
 logging.basicConfig(level=DEBUG)
 _logger = logging.getLogger(__name__)
+
+
+def build_graph(shapes):
+    g = Graph()
+    _logger.info("Building graph...")
+    for shape in shapes:
+        points = shape.points
+        start = points[0]
+        end = points[-1]
+        distance = path_length(points)
+
+        g.add_node(start)
+        g.add_node(end)
+        g.add_edge(start, end, distance)
+
+    _logger.info("Graph built with {} nodes.".format(len(g.nodes)))
+    return g
 
 
 # reference: https://gist.github.com/econchick/4666413
@@ -23,7 +40,7 @@ class Graph:
         self.distances[(from_node, to_node)] = distance
         self.distances[(to_node, from_node)] = distance
 
-    def dijsktra(graph, initial):
+    def dijsktra(graph, initial, progress=printProgress):
         _logger.debug("dijsktra {}".format(initial))
         _total = len(graph.nodes)
 
@@ -53,27 +70,9 @@ class Graph:
                 if edge not in visited or weight < visited[edge]:
                     visited[edge] = weight
                     path[edge] = min_node
-                    printProgress(len(visited), _total)
+                    progress(len(visited), _total)
 
-        printProgress(1, 1)
+        progress(1, 1)
         _logger.debug("dijsktra finished")
 
         return visited, path
-
-
-def shortest_path(graph, start, end):
-    (reachable, precursor) = graph.dijsktra(start)
-    if end not in reachable:
-        raise Exception("node unreachable")
-
-    path = []
-    cursor = end
-    while True:
-        path.append(cursor)
-        cursor = precursor[cursor]
-        if(cursor == start):
-            break
-
-    path.append(start)
-    path.reverse()
-    return path
