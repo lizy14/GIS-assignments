@@ -44,6 +44,7 @@ def shortest_path_wrapped(shapes, graph, start, end, progress=printProgress):
             if line.points[0] == start and line.points[-1] == end:
                 return True
             if line.points[-1] == start and line.points[0] == end:
+                line.points.reverse()
                 return True
             return False
         return filter(lambda x: directly_connects(x, start, end), shapes)
@@ -53,8 +54,6 @@ def shortest_path_wrapped(shapes, graph, start, end, progress=printProgress):
         candidates = path_between_adjacent_nodes(shapes, path[i], path[i + 1])
         shortest = min(candidates, key=lambda x: path_length(x.points))
         shortest = shortest.points
-        if shortest[0] != start:
-            shortest.reverse()
         result += shortest
     _logger.debug('shortest_path: ' + str(result))
     return result
