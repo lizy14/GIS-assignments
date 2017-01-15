@@ -3,6 +3,7 @@
 ## 环境
 
 * python 2.7
+* pyshp 1.2: `pip install -r requirements.txt`
 * Windows 7，32 位系统
 
 路网部分做了可视化. 为运行 GUI，需要更多准备工作：
