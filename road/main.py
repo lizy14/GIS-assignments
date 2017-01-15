@@ -23,14 +23,24 @@ def build_graph(shapes):
     return g
 
 
+def input_point(desc):
+    x = raw_input("{} x> ".format(desc))
+    y = raw_input("{} y> ".format(desc))
+    x = float(x)
+    y = float(y)
+    return (x, y)
+
+
 def main():
     from dao import shapes
     g = build_graph(shapes)
+    start = input_point('starting point')
+    end = input_point('ending point')
     _logger.debug(
         shortest_path(
             g,
-            nearest_neighbor(g.nodes, (600, 400)),
-            nearest_neighbor(g.nodes, (400, 600)),
+            nearest_neighbor(g.nodes, start),
+            nearest_neighbor(g.nodes, end),
         )
     )
 
