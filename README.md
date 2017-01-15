@@ -3,21 +3,11 @@
 ## 依赖项
 
 * python 2.7
-* pyshp 1.2
-```
-pip install -r requirements.txt
-```
 
 路网部分做了可视化. 为运行 GUI，需要更多准备工作：
 
 * 安装 qgis、PyQt4，相关环境变量配置，此处略
 * 将 qgis 安装位置填入 `road/config.py` 内 `QGIS_PATH`.
-* 编译 Qt 界面文件
-```
-cd road
-pyuic4 gui_ui.ui > gui_ui.py
-cd ..
-```
 
 
 ## 数据
