@@ -21,10 +21,6 @@ def path_length(points):
     return distance
 
 
-def test_path_length():
-    assert(path_length([(0, 0), (1, 1), (2, 3)]) == sqrt(2) + sqrt(5))
-
-
 def nearest_neighbor(points, p):
     nearest = None
     minimal_distance = float('inf')
