@@ -1,8 +1,23 @@
 # GIS 软件分析大作业
 
 ## 依赖项
+
 * python 2.7
-* pyshp 1.2: `pip install -r requirements.txt`
+* pyshp 1.2
+```
+pip install -r requirements.txt
+```
+
+路网部分做了可视化. 为运行 GUI，需要更多依赖项：
+
+* qgis、PyQt4，相关环境变量配置，此处略
+* 将 qgis 安装位置填入 `road/config.py` 内 `QGIS_PATH`.
+* 编译 Qt 资源文件（可选）
+```
+cd road
+pyuic4 gui_ui.ui > gui_ui.py
+cd ..
+```
 
 
 ## 数据
@@ -24,8 +39,10 @@ data
 运行 `python soil/main.py` 命令，输入图元编号（从 0 开始，以在 shapefile 中的顺序计），输出 MBR.
 
 ### 路网两点间最短路径
-运行 `python road/main.py` 命令，依次输入待查点的坐标. 视机器配置不同，计算可能花费十秒到一分钟，有进度条提示. 计算完毕后依次输出路径上的各点坐标.
+运行 `python road/main.py` 命令，依次输入待查点的坐标. 视机器配置不同，计算可能花费数秒到数十秒. 有进度条提示. 计算完毕后依次输出路径上的各点坐标.
 
+#### 可视化
+运行 `python road/gui_main.py` 命令，点击 `Open File` 按钮，选择 `road.shp` 文件. 此时屏幕上显示路网. 
 
 
 ## 单元测试
