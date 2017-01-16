@@ -2,7 +2,7 @@
 # Shirley Zheng all right reserved
 
 
-from config import FILENAME, QGIS_PATH
+from config import *
 from dao import *
 from graph import *
 from progress import printProgress
