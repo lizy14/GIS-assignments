@@ -147,11 +147,13 @@ class zlyShow(QDialog, createGUI.Ui_dlgShape):
         main_win.please('click on the starting point')
 
     def openFile(self):
-        '''
-        fileName = QFileDialog.getOpenFileName(
-            self, 'Open File', '/', 'shapefile(*.shp)')
-'''
-        fileName = FILENAME
+        try:
+            assert(DEBUG <= 1)
+            fileName = QFileDialog.getOpenFileName(
+                self, 'Open File', '/', 'shapefile(*.shp)')
+        except:
+            fileName = FILENAME
+
         if not fileName:
             return
 
@@ -164,7 +166,7 @@ class zlyShow(QDialog, createGUI.Ui_dlgShape):
             self.layer = layer
             assert(layer.isValid())
         except:
-            msg = "Failed to open file {}.".format(filename)
+            msg = "Failed to open file {}.".format(fileName)
             QMessageBox.warning(self, 'PyQt', msg, QMessageBox.Ok)
             return
 
