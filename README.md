@@ -5,7 +5,7 @@
 * python 2.7
 * Windows 7，32 位系统
 
-路网部分做了可视化. 为运行 GUI，需要更多准备工作：
+做了可视化. 为运行 GUI，需要更多准备工作：
 
 * 安装 qgis、PyQt4，相关环境变量配置，此处略去.
 * 将 qgis 安装位置填入 `road/config.py` 内 `QGIS_PATH`.
@@ -41,6 +41,12 @@ data
     shape id> 233333
     shape # 233333 does not exist!
     shape id> exit
+
+#### 可视化
+运行 `python soil/gui_main.py` 命令，启动图形界面. 点击 `Open File` 按钮，选择 `soil.shp` 文件. 此时窗口中显示地图，可利用鼠标滚轮进行缩放、平移.
+
+用鼠标点击图上任意点. 其所属区域将以红色显示，其最小包围矩形将以绿色显示. 同时窗口下方文字显示最小包围矩形的坐标.
+
 
 
 ### 路网两点间最短路径
