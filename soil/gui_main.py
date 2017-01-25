@@ -3,7 +3,6 @@
 
 
 from config import *
-from dao import *
 
 
 from qgis.core import *
