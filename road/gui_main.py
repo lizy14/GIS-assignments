@@ -2,7 +2,7 @@
 # Shirley Zheng all right reserved
 
 
-from config import FILENAME, QGIS_PATH
+from config import *
 from dao import *
 from graph import *
 from progress import printProgress
@@ -85,7 +85,6 @@ class PointTool(QgsMapTool):
         self.waiting_for_end = not self.waiting_for_end
 
 
-
 class zlyShow(QDialog, createGUI.Ui_dlgShape):
 
     start = None
@@ -107,7 +106,6 @@ class zlyShow(QDialog, createGUI.Ui_dlgShape):
         tool = PointTool(self.map_canvas)
         self.map_canvas.setMapTool(tool)
         self.please('click the button to choose a shapefile')
-
 
 
     def please(self, verb):
@@ -147,11 +145,13 @@ class zlyShow(QDialog, createGUI.Ui_dlgShape):
         main_win.please('click on the starting point')
 
     def openFile(self):
-        '''
-        fileName = QFileDialog.getOpenFileName(
-            self, 'Open File', '/', 'shapefile(*.shp)')
-'''
-        fileName = FILENAME
+        try:
+            assert(DEBUG <= 1)
+            fileName = QFileDialog.getOpenFileName(
+                self, 'Open File', '/', 'shapefile(*.shp)')
+        except:
+            fileName = FILENAME
+
         if not fileName:
             return
 
@@ -164,7 +164,7 @@ class zlyShow(QDialog, createGUI.Ui_dlgShape):
             self.layer = layer
             assert(layer.isValid())
         except:
-            msg = "Failed to open file {}.".format(filename)
+            msg = "Failed to open file {}.".format(fileName)
             QMessageBox.warning(self, 'PyQt', msg, QMessageBox.Ok)
             return
 
