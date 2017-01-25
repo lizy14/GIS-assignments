@@ -1,6 +1,7 @@
 import shapefile
 import logging
 from config import DEBUG
+from config import FILENAME
 logging.basicConfig(level=DEBUG)
 _logger = logging.getLogger(__name__)
 
@@ -15,3 +16,5 @@ def load_shapes(filename):
     _logger.info("Loaded {} shapes. ".format(len(shapes)))
 
     return shapes
+
+shapes = load_shapes(FILENAME)
