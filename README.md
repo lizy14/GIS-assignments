@@ -29,8 +29,6 @@ data
 ### 土壤数据最小包围矩形
 运行 `python soil/main.py` 命令，输入图元编号（从 0 开始，以在 shapefile 中的顺序计），输出 MBR.
 
-由于数据量太大造成的困难，未进行可视化展现.
-
 运行结果示意：
 
     Loaded 94303 shapes.
@@ -43,9 +41,13 @@ data
     shape id> exit
 
 #### 可视化
-运行 `python soil/gui_main.py` 命令，启动图形界面. 点击 `Open File` 按钮，选择 `soil.shp` 文件. 此时窗口中显示地图，可利用鼠标滚轮进行缩放、平移.
+运行 `python soil/gui_main.py` 命令，启动图形界面. 点击 `Open File` 按钮，选择 `soil.shp` 文件. 此时窗口中显示路网，可利用鼠标滚轮进行缩放、平移.
 
-用鼠标点击图上任意点. 其所属区域将以红色显示，其最小包围矩形将以绿色显示. 同时窗口下方文字显示最小包围矩形的坐标.
+用鼠标点击图上任意点. 其所在图元将以红色显示，其最小包围矩形将以绿色显示. 同时窗口下方文字显示最小包围矩形的坐标.
+
+
+运行时屏幕截图：
+![最小包围矩形显示](http://lizy14.github.io/GIS-assignments/screenshots/mbr.png)
 
 
 
