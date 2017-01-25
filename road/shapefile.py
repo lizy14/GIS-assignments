@@ -5,7 +5,7 @@ author: jlawhead<at>geospatialpython.com
 date: 2016/09/24
 version: 1.2.10
 Compatible with Python versions 2.4-3.x
-version changelog: 
+version changelog:
 - Bump version to fix pip install issue.
 """
 
@@ -251,7 +251,7 @@ class Reader:
                 self.dbf = kwargs["dbf"]
                 if hasattr(self.dbf, "seek"):
                     self.dbf.seek(0)
-        if self.shp or self.dbf:        
+        if self.shp or self.dbf:
             self.load()
         else:
             raise ShapefileException("Shapefile Reader requires a shapefile or file-like object.")
@@ -378,7 +378,7 @@ class Reader:
             record.m = unpack("<d", f.read(8))
         # Seek to the end of this record as defined by the record header because
         # the shapefile spec doesn't require the actual content to meet the header
-        # definition.  Probably allowed for lazy feature deletion. 
+        # definition.  Probably allowed for lazy feature deletion.
         f.seek(next)
         return record
 
@@ -441,7 +441,7 @@ class Reader:
         self.shpLength = shp.tell()
         shp.seek(100)
         while shp.tell() < self.shpLength:
-            yield self.__shape()    
+            yield self.__shape()
 
     def __dbfHeaderLength(self):
         """Retrieves the header length of a dbf file header."""
@@ -500,7 +500,7 @@ class Reader:
             if name == 'DeletionFlag':
                 continue
             elif typ in ("N","F"):
-                # numeric or float: number stored as a string, right justified, and padded with blanks to the width of the field. 
+                # numeric or float: number stored as a string, right justified, and padded with blanks to the width of the field.
                 value = value.replace(b('\0'), b('')).strip()
                 value = value.replace(b('*'), b(''))  # QGIS NULL is all '*' chars
                 if value == b(''):
@@ -851,7 +851,7 @@ class Writer:
                     if hasattr(s,"z"):
                         f.write(pack("<%sd" % len(s.z), *s.z))
                     else:
-                        [f.write(pack("<d", p[2])) for p in s.points]  
+                        [f.write(pack("<d", p[2])) for p in s.points]
                 except error:
                     raise ShapefileException("Failed to write elevation values for record %s. Expected floats." % recNum)
             # Write m extremes and values
@@ -878,7 +878,7 @@ class Writer:
                 if hasattr(s, "z"):
                     try:
                         if not s.z:
-                            s.z = (0,)    
+                            s.z = (0,)
                         f.write(pack("<d", s.z[0]))
                     except error:
                         raise ShapefileException("Failed to write elevation value for record %s. Expected floats." % recNum)
@@ -894,11 +894,11 @@ class Writer:
                 if hasattr(s, "m"):
                     try:
                         if not s.m:
-                            s.m = (0,) 
+                            s.m = (0,)
                         f.write(pack("<1d", s.m[0]))
                     except error:
-                        raise ShapefileException("Failed to write measure value for record %s. Expected floats." % recNum)    
-                else:                                
+                        raise ShapefileException("Failed to write measure value for record %s. Expected floats." % recNum)
+                else:
                     try:
                         if len(s.points[0])<4:
                             s.points[0].append(0)
@@ -1088,8 +1088,8 @@ class Writer:
         be written exclusively using saveShp, saveShx, and saveDbf respectively.
         If target is specified but not shp,shx, or dbf then the target path and
         file name are used.  If no options or specified, a unique base file name
-        is generated to save the files and the base file name is returned as a 
-        string. 
+        is generated to save the files and the base file name is returned as a
+        string.
         """
         # Create a unique file name if one is not defined
         if shp:
@@ -1103,7 +1103,7 @@ class Writer:
             if not target:
                 temp = tempfile.NamedTemporaryFile(prefix="shapefile_",dir=os.getcwd())
                 target = temp.name
-                generated = True         
+                generated = True
             self.saveShp(target)
             self.shp.close()
             self.saveShx(target)
@@ -1239,7 +1239,7 @@ def test(**kwargs):
     verbosity = kwargs.get('verbose', 1)
     failure_count, test_count = doctest.testfile("README.md", verbose=verbosity)
     return failure_count
-    
+
 if __name__ == "__main__":
     """
     Doctests are contained in the file 'README.md'. This library was originally developed
